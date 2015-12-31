@@ -1,0 +1,135 @@
+<html><!--xmlns:v-->
+<head>
+  <title>Exempel på Grafiskt interface</title>
+    <HTA:APPLICATION ID="oHTA"
+     APPLICATIONNAME="communication.bas"
+     BORDER="thin"
+     BORDERSTYLE="normal"
+     CAPTION="yes"
+     ICON=""
+     MAXIMIZEBUTTON="yes"
+     MINIMIZEBUTTON="yes"
+     SHOWINTASKBAR="yes"
+     SINGLEINSTANCE="yes"
+     SYSMENU="yes"
+     VERSION="1.0"
+     WINDOWSTATE="normal"/>
+     
+   <!-- <?import namespace="v" implementation="#default#VML" ?>
+	<style> v\:shape { behavior:url(#default#VML); display:inline-block; } </style>-->
+     
+	<style type="text/css">
+		body {
+			font-family: arial;
+			font-size: 12pt;
+			color: navy;
+			background-color: blue;
+		}
+		
+		#pageroot {
+			background-color: white;
+			border: 1px solid black;
+			margin:10pt;
+			padding: 10pt;
+			height: 100%;
+			width: 100%;
+		}
+		
+		#inputs {
+			border: 1px dashed gray;
+			width: 200px;
+			height: 350px;
+			
+		}
+		
+		#dashBoardContainer {
+			border: 1px dashed gray;
+			width: 450px;
+			position: relative;
+			float:left;
+			left: 0px;
+			top: 0px;
+			height:500px;
+		}
+		#rightMirrorContainer {
+			border: 1px dashed gray;
+			width: 400px;
+			/*position: relative;
+			float:right;*/
+			left: 0px;
+			top: 0px;
+			height:500px;
+		}
+		
+		
+		#main {
+			border: 0px solid black;
+			position: relative;
+			min-width: 750px;
+		}
+		
+		.arrows {
+			 fillcolor: #FFED9E;
+		}
+		
+	</style>
+  <script type="text/javascript">
+  	var picaxeSettings = {
+		  	logRootNode: "logContainer",
+	  		comportSelectId: "comport",
+	  		protocolFile: "protocol.js"
+	  		/*,connectionSettings: "9600,N,8,2"*/ // av kommentera om du ändrar processor frekvensen till 8Mhz
+	  	};
+  </script>
+  <script type="text/javascript" src="helpers.js"></script>
+  <script type="text/javascript" src="picaxeinterface.js"></script>
+  <script type="text/javascript" src="dashboard.js"></script>
+
+  <script type="text/javascript">
+  
+	  var dashBoard = new DashBoard(picaxe, "dashBoardContainer", "dashBoard", false, 1.2);
+	  
+	  addOnDOMLoad(function() {
+		// stoppa loggning om den inte är checkad	
+	  	setTimeout(function(){picaxe.log.setActive(document.forms[0].elements["logCheckbox"].checked)}, 200);
+	  });
+  
+  </script>
+</head>
+<body>
+  <form id="pageroot">
+    <h3>Exempel på ett grafiskt interface för att köra spegeln fram och tillbaka</h3>
+    <div>
+	    <select id="comport" onchange="picaxe.setComport(this.value)">
+	    	<option value="0">Ej vald</option>
+	    	<option value="1">Com 1</option>
+	    	<option value="2">Com 2</option>
+	    	<option value="3">Com 3</option>
+	    	<option value="4">Com 4</option>
+	    	<option value="5">Com 5</option>
+	    	<option value="6">Com 6</option>
+	    	<option value="7">Com 7</option>
+	    	<option value="8">Com 8</option>
+	    	<option value="9">Com 9</option>
+	    	<option value="10">Com 10</option>
+	    	<option value="11">Com 11</option>
+	    	<option value="12">Com 12</option>
+	    	<option value="13">Com 13</option>
+	    	<option value="14">Com 14</option>
+	    	<option value="15">Com 15</option>
+	    	<option value="16">Com 16</option>
+	    </select>
+ 
+  		<input type="checkbox" onclick="picaxe.log.setActive(this.checked)" name="logCheckbox"/> <!-- checked="true"/>-->
+  		<label for="logCheckbox">Logga trafiken mellan dator och picaxe</label>
+  	</div>
+  	<div id="main">
+		<div class="instrument">
+			<div id="dashBoardContainer"></div>	
+		</div>
+	</div>
+	<div id="logContainer"></div>
+	<pre id="debug"></pre>
+  </form>
+</body>
+</html>

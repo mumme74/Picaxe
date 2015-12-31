@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exempel på Grafiskt interface</title>
+  <style type="text/css">
+      body {
+        font-family: arial;
+        font-size: 12pt;
+        color: navy;
+        background-color: blue;
+      }
+
+      #pageroot {
+        background-color: white;
+        border: 1px solid black;
+        margin:10pt;
+        padding: 10pt;
+        min-width:1000px;
+        width: 100%;
+        /*width:expression(document.body.clientWidth < 1000? "1000px": "100%" );*/
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      
+      #leftHeadLampContainer {
+        /*border: 1px dashed gray;*/
+        width: 300px;
+        position: absolute;
+        /*float:left;*/
+        left: 200px;
+        top: 0px;
+        height:190px;
+      }
+      #rightHeadLampContainer {
+        /*border: 1px dashed gray;*/
+        width: 300px;
+        position: absolute;
+        right: 220px;
+        top: 0px;
+        height:190px;
+      }
+      #hornContainer {
+        /*border:1px dashed gray;*/
+        position: absolute;
+        width: 150px;
+        height:300px;
+        left:0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50px;
+      }
+      
+      #leftMirrorContainer {
+        /*border: 1px dashed gray;*/
+        width: 300px;
+        position: absolute;
+        left: 0px;
+        top: 190px;
+        height:355px;
+      }
+      #rightMirrorContainer {
+        /*border: 1px dashed gray;*/
+        position: absolute;
+        width: 300px;
+        right: 40px;
+        top: 190px;
+        height:355px;
+      }
+      #mirrorChoice {
+        position:absolute;
+        width:420px;
+        height: 100px;
+        left:0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 380px;
+        z-index:1;
+      }
+
+      #dashBoardContainer {
+        /*border: 1px dashed gray;*/
+        position: absolute;
+        width: 400px; 
+        height:75px;
+        left:0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 250px;
+      }
+      #leftLampContainer {
+        /*border: 1px dashed gray;*/
+        width: 300px;
+        position: absolute;
+        left: 200px;
+        top: 600px;
+        height:190px;
+      }
+      #rightLampContainer {
+        /*border: 1px dashed gray;*/
+        width: 300px;
+        position: absolute;
+        right: 200px;
+        top: 600px;
+        height:190px;
+      }
+
+      #main {
+        /*border: 1px solid black;*/
+        position: relative;
+        left:0;
+        right:20;
+        min-width: 960px;
+        height: 800px;
+      }
+
+      .arrows {
+        fillcolor: #FFED9E;
+      }
+      #serverConnected {
+        display:inline-block;
+        height: 32px;
+        width: 32px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background: #CCC;
+        background-image: url(disconnect.png);
+        background-repeat: no-repeat;
+      }
+      #serverConnected[webConnected] {
+        background: green;
+        background-image: url(disconnect.png);
+      }
+      #serverConnected[webConnected][picaxeConnected] {
+        background-image: url(connect.png);
+      }
+  </style>
+  <script type="text/javascript">
+    var picaxeSettings = {
+      logRootNode: "logContainer",
+      comportSelectId: "comport",
+      protocolFile: "protocol.js",
+      handshaking: 1 //använd Xon och Xoff för kommunikation med nätverket
+      /*,connectionSettings: "9600,N,8,2"*/ // av commenter om du ändrar processor frekvensen till 8Mhz
+    };
+  </script>
+  <script type="text/javascript" src="helpers.js"></script>
+  <script type="text/javascript" src="picaxeinterface.js"></script>
+  <script type="text/javascript" src="frontlamp.js"></script>
+  <script type="text/javascript" src="horn.js"></script>
+  <script type="text/javascript" src="mirror.js"></script>
+  <script type="text/javascript" src="dashboard.js"></script>
+  <script type="text/javascript" src="rearlamp.js"></script>
+  <script type="text/javascript">
+    picaxe.portSettings.xonxoff = true;
+    picaxe.portSettings.timeout = 2;
+    picaxe.portSettings.baudrate = 4800;
+
+    var rightHeadLamp = new FrontLamp(picaxe, "rightHeadLampContainer", "rightHeadlamp", true, 0.5);
+    var leftHeadLamp = new FrontLamp(picaxe, "leftHeadLampContainer", "leftHeadlamp", false, 0.5);  
+  
+    var rightMirror = new Mirror(picaxe, "rightMirrorContainer", "rightMirror", true, 0.6);
+    var leftMirror = new Mirror(picaxe, "leftMirrorContainer", "leftMirror", false, 0.6);
+    mirrorGovenor.setSelected(leftMirror);
+    leftMirror.update();
+    rightMirror.update();
+    //  addOnDOMLoad(function(){leftMirror.thermometer.toggleAutoUpdate();}, this);
+    //  rightMirror.thermometer.toggleAutoUpdate();
+  
+    var dashBoard = new DashBoard(picaxe, "dashBoardContainer", "dashBoard", false, 0.6);
+    var horn = new Horn(picaxe, "hornContainer", "horn", false, 0.5);
+ 
+  
+    var leftLamp = new RearLamp(picaxe, "leftLampContainer", "leftRearLamp", false, 0.6);
+    var rightLamp = new RearLamp(picaxe, "rightLampContainer", "rightRearLamp", true, 0.6);
+  
+  
+    addOnDOMLoad(function() {
+      // stoppa loggning om den inte är checkad	
+      setTimeout(function(){picaxe.log.setActive(document.forms[0].elements["logCheckbox"].checked)}, 200);
+    });
+  
+  </script>
+</head>
+<body>
+  <form id="pageroot">
+    <h3>Exempel på ett grafiskt interface för att tända olika funktioner</h3>
+    Använd handskakning när du kommunicerar med kortet (krävs för nätverk) 
+    <input type="checkbox" id="handshake" checked="true" onclick="picaxe.setHandshaking(this.checked)"/> <br/><br/>
+    <div>
+      <div id="serverConnected"></div>
+      <select id="comport" onchange="picaxe.setComport(this.value)"></select>
+      <input type="checkbox" onclick="picaxe.log.setActive(this.checked)" name="logCheckbox"/> <!-- checked="true"/>-->
+      <label for="logCheckbox">Logga trafiken mellan dator och picaxe</label>
+    </div>
+    <div id="main">
+      <div class="headLamps">
+        <div id="leftHeadLampContainer"></div>	
+        <div id="rightHeadLampContainer"></div>	
+      </div>
+      <div id="hornContainer"></div>	
+        <div id="leftMirrorContainer"></div>
+        <div id="rightMirrorContainer"></div>
+        <div id="mirrorChoice">
+          <input type="radio" name="keyPressTo" checked="true" value="left" onclick="mirrorGovenor.setSelected(leftMirror)"/>
+          <label for="keyPressTo">Vänster</label> &nbsp; &nbsp; &nbsp;
+          <b>Piltangenter till spegel:</b> 
+          &nbsp; &nbsp; &nbsp;
+          <label for="keyPressTo">Höger</label>
+          <input type="radio" name="keyPressTo" value="right" onclick="mirrorGovenor.setSelected(rightMirror)"/>
+        </div>
+        <!--<div class="instrument">-->
+        <div id="dashBoardContainer"></div>	
+        <!--</div>-->
+        <div class="rearLamps">
+          <div id="leftLampContainer"></div>
+          <div id="rightLampContainer"></div>	
+        </div>
+      </div>
+    <div id="logContainer"></div>
+    <pre id="debug"></pre>
+  </form>
+</body>
+</html>

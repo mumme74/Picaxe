@@ -1,0 +1,47 @@
+<!-- svg för RearLamp widgeten-->
+<svg width="600px" height="320px">
+  <g id="$rearlampcommon" coordsize="600, 300" style="left:-150px;top:0px;width:600px;height:300px;">
+    <!--blinkersljus-->
+    <g transform="translate(0,20)" witdh="170" height="300">
+      <path id="$blinklightbeam" style="left:0px;top:0px;width:170px;height:300px;fill:#FFF1B7;stroke:none;visibility:hidden;" 
+            d="M150,0 C 130,-10 40,-20 30,10 C 5,40 2,130  5,150 C 2,180 30,228 50,230 C 70,235 130,230 150,200"/>
+    </g>
+    <!--bromsljus-->
+    <g transform="translate(150,220)" width="100" height="100">
+      <path id="$brakelightbeam" style="fill:#FF7D60; stroke:none;visibility:hidden;"
+            d="M0,0 Q50,100 100,0Z"/>
+    </g>
+    <!--bakljus-->
+    <g transform="translate(250,220)" width="100" height="100">
+      <path id="$parklightbeam" style="fill:#FF7D60; stroke:none;visibility:hidden;" 
+            d="M0,0 Q50,100 100,0Z"
+            stroked="false" fillcolor="#FF7D60"/>
+    </g>
+    <!--backljus-->
+    <g transform="translate(350,220)" width="71" height="100">
+      <path id="$backinglightbeam" style="fill:#FFFF9B;stroke:none;visibility:hidden;"
+            d="M0,0 Q50,100 100,0"/>
+    </g>
+    <!--blinkers-->
+    <g transform="translate(50,20)" width="100" height="200">
+      <path id="$blinker" title="blinkers" coordsize="100 200" style="left:50px;top:50px;width:100px;height:200px;fill:#FFF1B7;stroke:#000;"
+            d="M100,0 L 100,200 20,200 Q-30,180 0,20 L0,20 Q0,0 100,0 Z" fillcolor="#FFF1B7"
+            onmouseover="this.style.cursor='cursor:hand'"/>
+    </g>
+    <!--bromslampa-->
+    <g transform="translate(150,20)" width="100" height="200">
+      <path id="$brakelight" title="bromsljus" coordsize="71 13" style="left:150px;top:50px;width:71px;height:13px;fill:#FF7D60;stroke:#000;" 
+            d="M0,0 L 100,0 100,200 0,200Z" onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--baklampa-->
+    <g transform="translate(250,20)" width="100" height="200">
+      <path id="$parklight" title="bakljus" coordsize="71 13" style="left:250px;top:50px;width:71px;height:13px;fill:#FF7D60; stroke:#000;" 
+            d="M0,0 L 100,0 100,200 0,200Z" fillcolor="#FF7D60" onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--backljuslampa-->
+    <g transform="translate(350,20)" width="100" height="200px">
+      <path id="$backinglight" title="backljuslampa" coordsize="71 13" style="left:350px;top:50px;width:71px;height:13px;fill:#FFF;stroke:#000;" 
+          d="M0,0 L 100,0 100,200 0,200Z" fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+    </g>
+  </g>
+</svg>

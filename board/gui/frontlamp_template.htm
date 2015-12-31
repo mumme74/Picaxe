@@ -1,0 +1,54 @@
+<!-- svg för RearLamp widgeten-->
+<svg style="left:0px;top:0px;width:600px;height:360px;">
+  <g id="$frontlampcommon" >
+    <!--blinkersljus-->"
+    <g transform="translate(0,50)" width="170" height="350">
+      <path id="$blinklightbeam" style="fill:#FFF1B7;stroke:none;opacity:0.6;visibility:hidden;"
+            d="M50 290 A 20 35 -10 0 1 150 40"/>
+    </g>
+    <!--parkljus--> 
+    <g transform="translate(150,20)" width="70" height="70">
+      <path id="$parklightbeam" style="fill:#FFFFC0;stroke:none;visibility:hidden;"
+            d="M0,70 Q30,0 70,60Z"/>
+    </g>
+    <!--halvljus-->
+    <g transform="translate(215,20) rotate(-2)" width="125" height="60">
+      <path id="$lowlightbeam" style="fill:#D1FFD8;stroke:none;visibility:hidden;"
+            d="M0,60 Q67,0 125,60Z"/>
+    </g>
+    <!--helljus-->
+    <g transform="translate(335,15)" width="145" height="60">
+      <path id="$highlightbeam" style="fill:#C1FFC8;stroke:none;visibility:hidden;"
+            d="M0,60 Q67,0 125,60Z"/>
+    </g>
+    
+    <!--blinkers--> 
+    <g transform="translate(50,60)" width="100" height="300">
+      <path id="$blinker" title="blinkers" style="fill:#FFF1B7;stroke:#000;"
+            d="M100,30 L 100,200 80,200 50,250 Q10,300 0,280 2,250 4,220 10,150 17,130 30,90 50,55 70,40 100,30Z" fillcolor="#FFF1B7"
+            onmouseover="this.style.cursor= 'hand'"/>
+    </g>
+    <!--parkljuslampa-->
+    <g transform="translate(150,60)" width="70" height="200">
+      <path id="$parklight" title="parkeringsljus"  style="fill:#FFF; stroke:#000;" 
+            d="M0,30 Q 20,26 50,21 L 70,20 70,200 0,200Z" fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--halvljuslampa-->
+    <g transform="translate(220,60)" width="125" height="200">
+      <path id="$lowlight" title="halvljus"  style="fill:#FFF; stroke:#000;" 
+            d="M0,20 Q30,17 80,16 L 125,15 125,200 0,200Z" fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--helljuslampa-->
+    <g transform="translate(335, 60)" width="125" height="200">
+      <path id="$highlight" title="helljus" style="fill:#FFF;stroke:#000;" 
+            d="M0,15 L 125,16 125,200 0,200Z"	fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--ljuslängdsjustering-->
+    <g id="$angleadjuster" title="justera ljusvinkel" width="30" height="80" transform="translate(265,270)">
+      <path coordsize="30 80" style="left:0px;top:4px;width:30px;height:80px; fill: gray;stroke:#000;"
+            d="M5,0 L 5,80 20,80 20,0Z M0,20 L 26,20Z M0,40 L 26,40Z M0,60 L 26,60Z"/>
+      <path id="$angleslider" coordsize="26 8" style="left:2px;top:0px;width:26px;height:12px; fill: #CCC;stroke:#000;" 
+            d="M0,4 L 6,0 20,0 26,4 20,8 6,8Z" onmouseover="this.style.cursor='hand';"/>
+    </g>
+  </g>
+</svg>

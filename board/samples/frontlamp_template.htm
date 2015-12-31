@@ -1,0 +1,36 @@
+			<!-- VML för RearLamp widgeten-->
+			<v:group id="$frontlampcommon" coordsize="600, 300" style="left:-300px;top:0px;width:600px;height:310px;">
+			  	<!--blinkersljus-->
+				<v:arc id="$blinklightbeam"  startangle="60" endangle="-175" style="left:0px;top:30px;width:170px;height:300px;
+							 visibility:hidden;" stroked="false" fillcolor="#FFF1B7"/>
+				<!--parkljus-->
+				<v:arc id="$parklightbeam" startangle="120" endangle="-120" style="left:150px;top:10px;width:70px;height:200px; 
+							visibility:hidden;" stroked="false" fillcolor="#FFFFC0"/>
+			 	<!--halvljus-->
+				<v:arc id="$lowlightbeam" startangle="70" endangle="-70" style="left:212px;top:5px;width:132px;height:300px; 
+							visibility:hidden;" stroked="false" fillcolor="#D1FFD8"/>
+				<!--helljus-->
+				<v:arc id="$highlightbeam" startangle="60" endangle="-62" style="left:325px;top:0px;width:145px;height:300px; 
+							visibility:hidden;" stroked="false" fillcolor="#C1FFC8"/>
+				<!--blinkers-->
+				<v:shape id="$blinker" title="blinkers" coordsize="100 300" style="left:50px;top:60px;width:100px;height:300px;"
+						path="m100,30 l 100,200 80,200 qb50,250 10,300 0,280 2,250 4,220 10,150 17,130 30,90 50,55 70,40xe" fillcolor="#FFF1B7"
+						 onmouseover="this.style.cssText='cursor:hand'"/>
+				<!--bromslampa-->					
+				<v:shape id="$parklight" title="parkeringsljus" coordsize="70 200" style="left:150px;top:60px;width:70px;height:200px;" 
+						path="m0,30 qb 20,26 50,21 l 70,20 70,200 0,200xe" fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+				<!--baklampa-->					
+				<v:shape id="$lowlight" title="halvljus" coordsize="125 200" style="left:220px;top:60px;width:125px;height:200px" 
+						path="m0,20 qb30,17 80,16 l 125,15 125,200 0,200xe"	fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+				<!--backljuslampa-->					
+				<v:shape id="$highlight" title="helljus" coordsize="125 200" style="left:335px;top:60px;width:125px;height:200px" 
+						path="m0,15 l 125,16 125,200 0,200xe"	fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+				<!--ljuslängdsjustering-->
+				<v:group id="$angleadjuster" title="justera ljusvinkel" coordsize="30 80" style="left:265px;top:260px;width:30px;height:88px;">
+					<v:shape coordsize="30 80" style="left:0px;top:4px;width:30px;height:80px;"
+						fillcolor="gray" path="m5,0 l 5,80 25,80 25,0xe m0,20 l 30,20e m0,40 l 30,40e m0,60 l 30,60e"/>
+					<v:shape id="$angleslider" coordsize="26 8" style="left:2px;top:0px;width:26px;height:12px" 
+						fillcolor="#CCC" path="m0,4 l 6,0 20,0 26,4 20,8 6,8xe" onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+
+			</v:group>

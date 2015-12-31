@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" />
+  <title>Exempel på Grafiskt interface</title>
+     
+	<style type="text/css">
+		body {
+			font-family: arial;
+			font-size: 12pt;
+			color: navy;
+			background-color: blue;
+		}
+		
+		#pageroot {
+			background-color: white;
+			border: 1px solid black;
+			margin:10pt;
+			padding: 10pt;
+			height: 100%;
+			width: 100%;
+			border-radius: 10px;
+		}
+		
+		#inputs {
+			border: 1px dashed gray;
+			width: 210px;
+			display: inline-block;
+			margin-top: 40px;
+			vertical-align:top;
+		}
+
+		#outputs {
+			border: 1px dashed gray;
+			width: 180px;
+			display: inline-block;
+			vertical-align:top;
+		}
+		
+		#arrows {
+			margin-top: 15px;
+			/*border: 1px dashed black;*/
+			background-image: url(tutorialboard18.jpg);
+			background-repeat: no-repeat;
+			background-position: center; 
+		}
+		
+		#main {
+			border: 0px solid black;
+			min-width: 750px;
+			height: 360px;
+			font-size: 10pt;
+		}
+
+		#serverConnected {
+			display:inline-block;
+			height: 32px;
+			width: 32px;
+			border-radius: 5px;
+			border: 1px solid gray;
+			background: #CCC;
+			background-image: url(disconnect.png);
+			background-repeat: no-repeat;
+		}
+		#serverConnected[webConnected] {
+			background: green;
+		}
+		#serverConnected[webConnected][picaxeConnected] {
+			background-image: url(connect.png);
+		}
+		
+		
+	</style>
+  <script type="text/javascript">
+  	var picaxeSettings = {
+		  	logRootNode: "logContainer",
+	  		comportSelectId: "comport",
+	  		connectionSettings: "9600,N,8,2"
+	  	};
+  </script>
+  <script type="text/javascript" src="picaxeinterface.js"></script>
+  <script type="text/javascript" src="graph.js"></script>
+  <script type="text/javascript" src="gui_logic_functions.js"></script>
+  <script type="text/javascript">
+  
+  var graph = {}; // ref a empty object for closure
+  window.addEventListener("load", function() {
+	// välj comport automatiskt	
+  	generate(); // finns i filen communication_netcomm_functions.js
+  	
+  }, true);
+  
+  </script>
+</head>
+<body>
+  <form id="pageroot" onsubmit="return false;">
+    <h3>Exempel på ett grafiskt interface som pratar med picaxe mikrokontrollern</h3>
+    <div id="serverConnected"></div>
+    <select id="comport" onchange="picaxe.setComport(this.value)"></select> 
+  	<select onchange="generate()" id="picaxeType">
+  		<option value="18M">picaxe18M</option>
+  		<option value="18M2" selected="true">picaxe18M2</option>
+  	</select>
+  	<div>
+  		<input type="checkbox" onclick="updaterObject.toggleUpdateInputs()" name="autoUpdate"/> 
+  		<label for="autoUpdate">Updatera ingångsvärden automatiskt</label>
+  		&nbsp; &nbsp;
+  		<input type="checkbox" onclick="picaxe.log.setActive(this.checked)" name="logCheckbox" checked="true"/>
+  		<label for="logCheckbox">Logga trafiken mellan dator och picaxe</label>
+  	</div>
+  	<div id="main">
+		<div id="inputs">Ingångar<br/></div>
+		<img src="arrows.gif" id="arrows"/>
+		<div id="outputs">Utgångar<br/></div>
+	</div>
+	
+  
+	<div id="graph"></div>
+	<div id="logContainer"></div>
+	<pre id="debug"> </pre>
+  </form>
+</body>
+</html>

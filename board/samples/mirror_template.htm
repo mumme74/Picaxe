@@ -1,0 +1,120 @@
+			<!-- VML för Mirror widgeten-->
+			<v:group id="$mirrorcommon" coordsize="600, 600" style="top:0;left:0;width:600px;height:600px;">
+				<v:group id="$foldingmirror" coordsize="600 600" 
+					style="left:0px;top:0px;width:600px;height:600px; position:absolute;">
+					<!--blinkersljus-->
+					<v:arc id="$blinklightbeam" startangle="50" endangle="-120" style="left:0px;top:60px;width:300px;height:300px;
+							 position:absolute;visibility:hidden;" stroked="false">
+						<v:fill opacity="30%" color="#FFC321"/>
+					</v:arc>
+					<!--blinkers-->
+					<v:shape id="$blinker" coordsize="93 80" style="left:80px;top:135px;width:93px;height:80px;"
+						path="m0,80 l 1,60 3,50 qb14,30 45,9 66,4 l 78,1 93,0xe" fillcolor="#FFC321"
+						 onmouseover="this.style.cssText='cursor:hand'"/>
+					<!--trygghetsljus-->
+					<v:arc id="$safelightbeam" startangle="270" endangle="52" style="left:255px;top:0px;width:250px;height:250px; 
+							position:absolute;flip:y; visibility:hidden;" stroked="false">
+						<v:fill opacity="40%" color="#EAFFA5"/>
+					</v:arc>
+					<!--trygghetslampa-->					
+					<v:shape id="$safelight" coordsize="71 13" style="left:344px;top:83px;width:71px;height:13px" 
+						path="m0,11 l 6,4 qb26,1 46,0 l 66,4  71,11xe"	
+						fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>		 
+						 
+					<!--spegelkåpa-->
+					<v:shape coordsize="400 136" style="left:80px;top:89px;width:400px;height:136px;"
+						path="m0,136 l 1,126 3,116 qb9,103 18,89 27,81 38,73
+										50,66 93,46 150,28 230,8 310,0
+										335,5 345,10 355,18 367,36 385,76
+						 				l 400,126 0,136xe" fillcolor="silver"/>
+					<!--ram-->
+					<v:shape coordsize="400 20" style="left:80px;top:215px;width:400px;height:20px;"
+						 path="m0,10 l 400,0 397,20 1,20 0,10" fillcolor="#555"/>
+						 
+				    <!-- rita spegel positionspilarna -->
+					<v:group id="$positionarrows" coordsize="400 400" style="left:150px;top:140px;width:400px;height:400px;position:absolute;"
+						 title="Även piltangenter fungerar, mellanslag avbryter rörelsen">
+						<v:shape id="$up_arrow" coordsize="50 100" style="left:100px;top:40px;width:50px;height:60px;" 
+							path="m25,0 l 50,20 40,20 38,100 12,100 10,20 0,20xe" 
+							fillcolor="#FFED9E"  onmouseover="this.style.cssText='cursor:hand'"/>
+						<v:shape id="$left_arrow" coordsize="100 40" style="left:0px;top:100px;width:100px;height:40px;"
+							path="m0,21 l 19,0 20,11 99,11 100,31 21,31 22,40xe"
+							fillcolor="#FFED9E" onmouseover="this.style.cssText='cursor:hand'"/>
+						<v:shape id="$right_arrow" coordsize="100 40" style="left:150px;top:100px;width:100px;height:40px;"
+							path="m100,21 l 79,40 80,31 0,31 1,11 81,11 82,0xe"
+							 fillcolor="#FFED9E"  onmouseover="this.style.cssText='cursor:hand'"/>
+						<v:shape id="$down_arrow" coordsize="50 100" style="left:100px;top:138px;width:50px;height:50px;"
+							path="m25,100 l 5,85 15,85 13,0 37,0 35,85 45,85xe"
+							 fillcolor="#FFED9E"  onmouseover="this.style.cssText='cursor:hand'"/>
+					</v:group>
+				</v:group>
+				
+				
+
+				
+				<!--blinksymbol-->
+				<v:group id="$blinksymbol" coordsize="70 70" style="left:10px;top:10px;width:70px;height:70px;position:absolute;rotation:-45"
+					onmouseover="this.style.cursor='hand'">
+					<v:shape id="$blinksymbolfield" coordsize="70 70" style="width:70px;height:70px;"
+						path="m35,35 l 35,0 qx70,35xe m35,35 l 35,70 qx0,35 xe" fillcolor="white"/>						
+					<v:shape coordsize="70 70" style="width:70px;height:70px;"
+						path="m35,35 l 35,0 qx0,35xe m35,35 l 35,70 qx70,35 xe" fillcolor="black"/>
+				</v:group>
+				<!--slut blinksymbol-->
+				
+				<!--värmesymbol-->
+				<v:group id="$heatersymbolgroup" coordsize="70 55" style="left:110px;top:10px;width:70px;height:55px; position:absolute;">
+					<v:roundrect id="$heatsymbol" fillcolor="#7CC4FF" style="top:10px;width:70px;height:45px;" 
+						onmouseover="this.style.cursor='hand';"/>
+					
+					<v:shape id="$heatwaves" strokecolor="black" strokeweight="2px" coordsize="26 32" style="left:20px;width:26px;height:32px;" 
+					   path="m3,0 nf qx6,8 qy3,16 qx0,24 qy3,32e m13,0 nf qx16,8 qy13,16 qx10,24 qy13,32e m23,0 nf qx26,8 qy23,16 qx20,24 qy23,32 e "
+					   onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+				<!--slut väremsymbol-->
+				
+				<!--tryggbelsymbol-->
+				<v:group id="$safelightsymbol" coordsize="70 70" style="left:210px;top:10px;width:70px;height:70px;position:absolute;rotation:-45"
+					onmouseover="this.style.cursor='hand'">
+					<v:shape id="$safelightsymbolfield1" coordsize="70 70" style="width:70px;height:70px;"
+						path="m35,35 l 35,0 qx70,35xe m35,35 l 35,70 qx0,35 xe" fillcolor="white"/>						
+					<v:shape id="$safelightsymbolfield2" coordsize="70 70" style="width:70px;height:70px;"
+						path="m35,35 l 35,0 qx0,35xe m35,35 l 35,70 qx70,35 xe" fillcolor="white"/>
+				</v:group>
+				<!--slut tryggbelsymbol-->
+			
+			
+				
+				<!--fällpil-->
+				<v:shape id="$foldarrow" coordsize="200 200" style="left:60px;top:290px;width:200px;height:200px;position:absolute;"
+					onmouseover="this.style.cursor='hand';"> 
+					<v:path v="m10,20 l 0,20 20,0 40,20 30,20 qy 180,170 l 180,160 200,180 180,200 180,190 qx 10,20  xe"/>
+				</v:shape>
+				
+				<!--termometer-->
+				<v:group id="$thermometer" coordsize="70 140" style="left:0px;top:100px;width:70px;height:140px;position:absolute;"
+						onmouseover="this.style.cursor='hand';">
+				 	<v:rect style="top:70px;left:10px;width:30px;height:18px;" stroked="false" filled="false">
+						<v:textbox style="margin:0;padding:0;mso-fit-text-to-shape:true;" inset="0px, 0px, 0px,0px">16&deg;</v:textbox>
+					</v:rect>
+				 	<v:rect style="top:50px;left:10px;width:30px;height:18px;" stroked="false" filled="false">
+						<v:textbox style="margin:0;padding:0;mso-fit-text-to-shape:true;" inset="0px, 0px, 0px,0px">20&deg;</v:textbox>
+					</v:rect>
+				 	<v:rect style="top:30px;left:10px;width:30px;height:18px;" stroked="false" filled="false">
+						<v:textbox style="margin:0;padding:0;mso-fit-text-to-shape:true;" inset="0px, 0px, 0px,0px">24&deg;</v:textbox>
+					</v:rect>
+				 	<v:rect style="top:10px;left:10px;width:30px;height:18px;" stroked="false" filled="false">
+						<v:textbox style="margin:0;padding:0;mso-fit-text-to-shape:true;" inset="0px, 0px, 0px,0px">28&deg;</v:textbox>
+					</v:rect>
+					<v:shape coordsize="70 120" style="left:0px;top:0px;height:120px;width:70px;"
+						path="m40,0 l 60,0 60,90 qx70,105 qy50,120 qx30,105 qy40,90 l 40,0xe" fillcolor="red"/>
+					<v:rect id="$thermometerscale" style="left:40px;top:0px;width:20px;height:100px;" fillcolor="blue" stroked="false"/>
+					<v:line from="30,80" to="70,80"/>
+					<v:line from="30,60" to="70,60"/>
+					<v:line from="30,40" to="70,40"/>
+					<v:line from="30,20" to="70,20"/>
+					<v:rect id="$themometerupdate" style="top:120px;left:20px;width:50px;height:20px;" fillcolor="#999">
+						<v:textbox style="mso-fit-text-to-shape:true;" inset="2px, 2px, 2px, 2px"><center>Auto</center></v:textbox>
+					</v:rect>
+				</v:group>
+			</v:group>

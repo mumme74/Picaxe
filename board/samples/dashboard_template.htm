@@ -1,0 +1,88 @@
+			<!-- VML för RearLamp widgeten-->
+			<v:group id="$dashboardcommon" coordsize="600, 200" style="top:0px;left:0px;width:600px;height:200px;">
+				<!--instrumentbräda-->
+				<v:shape id="dashboard" coordsize="600, 200" style="left:0px;top:0px;width:600px;height:200px;"
+					path="m0,200 qb20,100 50,10 300,0 550,10 580,100 600,200 l 600,200xe" fillcolor="9#F9F78"/>
+				<!--vänster blinkers-->
+				<v:shape id="$leftblinker" title="vänster blinkers" coordsize="100 50" style="left:200px;top:20px;width:50px;height:50px;"
+						path="m0,25 l 25,0 25,15 100,15 100,35 25,35 25,50xe" fillcolor="#E4FFB2"
+						 onmouseover="this.style.cssText='cursor:hand'"/>
+				<!--höger blinkers-->
+				<v:shape id="$rightblinker" title="höger blinkers" coordsize="100 50" style="left:350px;top:20px;width:50px;height:50px;"
+						path="m100,25 l 75,0 75,15 0,15 0,35 75,35 75,50xe" fillcolor="#E4FFB2"
+						 onmouseover="this.style.cssText='cursor:hand'"/>
+				<!--värmesymbol-->
+				<v:group id="$heatersymbolgroup" coordsize="140 110" style="left:25px;top:150px;width:100px;height:100px;">
+					<v:roundrect id="$defroster" title="defroster" fillcolor="#7CC4FF" style="top:10px;width:70px;height:45px;" 
+						onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$defrostersymbol" strokecolor="black" strokeweight="2px" coordsize="26 32" style="left:20px;width:26px;height:32px;" 
+					   path="m3,0 nf qx6,8 qy3,16 qx0,24 qy3,32e m13,0 nf qx16,8 qy13,16 qx10,24 qy13,32e m23,0 nf qx26,8 qy23,16 qx20,24 qy23,32 e " onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+				<!--slut väremsymbol-->
+				<!--trygghetsbelysning-->
+				<v:group coordsize="50, 50" style="left:125px;top:150px;width:50px;height:50px;">						
+					<v:shape id="$safelight" title="trygghetsbelysning" coordsize="100 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$safelightletter" coordsize="200 200" style="left:7px;top:9px;width:70px;height:70px;" 
+							path="m10,0 l 90,0e m50,0 l 50,100e"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>	<!--path="m90,20 qy50,0 qx10,25 qy50,50 qx95,75 qy50,100 qx5,80e"-->
+				<!--backljuslampa-->
+				<v:group coordsize="50, 50" style="left:200px;top:150px;width:50px;height:50px;">						
+					<v:shape id="$backinglight" title="backljus" coordsize="100 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$backinglightletter" coordsize="200 200" style="left:9px;top:9px;width:70px;height:70px;" 
+							path="m0,100 l 0,0 35,0 qx80,25 qy35,49 l 0,50 40,55 qx85,83 l 90,100e"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>	
+				<!--bromsljus-->
+				<v:group coordsize="50, 50" style="left:275px;top:150px;width:50px;height:50px;">					
+					<v:shape id="$brakelight" title="bromsljus" coordsize="100, 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FF7D60" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$brakelightletter" coordsize="200 200" style="left:9px;top:9px;width:70px;height:70px;" 
+							path="m0,0 l 35,0 qx80,25 qy35,49 l 0,50 40,52 qx90,75 qy40,100 l 0,100xe"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+				<!--parklampa-->					
+				<v:group coordsize="100, 100" style="left:350px;top:150px;width:100px;height:100px;">						
+					<v:shape id="$parklight" title="parkeringsljus" coordsize="100 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$parklightsymbol" coordsize="200 200" style="left:0px;top:0px;width:100px;height:100px;" 
+							path="m25,30 qx45,50 qy25,70x m10,25 l 15,30e m10,50 l 15,50e m10,75 l 15,70e
+								  m75,30 qx55,50 qy75,70x m90,25 l 85,30e m90,50 l 85,50e m90,75 l 85,70e   e"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+				<!--halvljus-->
+				<v:group coordsize="100, 100" style="left:425px;top:150px;width:100px;height:100px;">						
+					<v:shape id="$lowbeamlight" title="halvljus" coordsize="100 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$lowbeamlightsymbol" coordsize="200 200" style="left:0px;top:0px;width:100px;height:100px;" 
+							path="m60,20 qx15,50 qy60,80x m85,25 l 70,20e m85,55 l 70,50x m85,85 l 70,80e"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>
+				<!--helljus-->
+				<v:group coordsize="100, 100" style="left:500px;top:150px;width:100px;height:100px;">						
+					<v:shape id="$highbeamlight" title="helljus" coordsize="100 100" style="left:0px;top:0px;width:50px;height:50px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$highbeamlightsymbol" coordsize="200 200" style="left:0px;top:0px;width:100px;height:100px;" 
+							path="m60,20 qx15,50 qy60,80x m85,15 l 70,20e m85,50 l 70,50e m85,85 l 70,80e"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>	
+				
+				<!--helljus-->
+				<v:group coordsize="150, 100" style="left:250px;top:75px;width:150px;height:100px;">						
+					<v:shape id="$horn" title="signalhorn" coordsize="150 200" style="left:0px;top:0px;width:150px;height:100px;" 
+							path="m5,0 l 95,0 qx 100,5 l 100,95 qy95,100 l 5,100 qx0,95 l 0,5 qy5,0xe"
+							fillcolor="#7CC4FF" onmouseover="this.style.cursor='hand';"/>
+					<v:shape id="$hornsymbol" coordsize="110 220" style="left:3px;top:2px;width:100px;height:100px;" 
+							path="m5,30 qy25,50 l 65,50 qx95,5 l 95,95 qy65,50 l 55,50 qx75,75 qy50,95 qx20,75 qy40,50 l 25,50 qx5,70xe"
+							filled="false" strokeweight="2" onmouseover="this.style.cursor='hand';"/>
+				</v:group>	
+
+			</v:group>

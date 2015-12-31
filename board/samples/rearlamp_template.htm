@@ -1,0 +1,29 @@
+			<!-- VML för RearLamp widgeten-->
+			<v:group id="$rearlampcommon" coordsize="600, 300" style="left:-150px;top:0px;width:600px;height:300px;">
+			  	<!--blinkersljus-->
+				<v:arc id="$blinklightbeam"  startangle="0" endangle="360" style="left:0px;top:0px;width:170px;height:300px;
+							 position:absolute;visibility:hidden;" stroked="false" fillcolor="#FFF1B7"/>
+				<!--bromsljus-->
+				<v:arc id="$brakelightbeam" startangle="0" endangle="360" style="left:133px;top:0px;width:135px;height:300px; 
+							position:absolute;visibility:hidden;" stroked="false" fillcolor="#FF7D60"/>
+			 	<!--bakljus-->
+				<v:arc id="$parklightbeam" startangle="0" endangle="360" style="left:233px;top:0px;width:135px;height:300px; 
+							position:absolute;visibility:hidden;" stroked="false" fillcolor="#FF7D60"/>
+				<!--backljus-->
+				<v:arc id="$backinglightbeam" startangle="0" endangle="360" style="left:333px;top:0px;width:135px;height:300px; 
+							position:absolute;visibility:hidden;" stroked="false" fillcolor="#FFFF9B"/>
+				<!--blinkers-->
+				<v:shape id="$blinker" title="blinkers" coordsize="100 200" style="left:50px;top:50px;width:100px;height:200px;position:relative;"
+						path="m100,0 l 100,200 20,200 qx0,180 l 0,20 qy20,0xe" fillcolor="#FFF1B7"
+						 onmouseover="this.style.cssText='cursor:hand'"/>
+				<!--bromslampa-->					
+				<v:shape id="$brakelight" title="bromsljus" coordsize="71 13" style="left:150px;top:50px;width:71px;height:13px" 
+						path="m0,0 l 100,0 100,200 0,200xe"	fillcolor="#FF7D60" onmouseover="this.style.cursor='hand';"/>
+				<!--baklampa-->					
+				<v:shape id="$parklight" title="bakljus" coordsize="71 13" style="left:250px;top:50px;width:71px;height:13px" 
+						path="m0,0 l 100,0 100,200 0,200xe"	fillcolor="#FF7D60" onmouseover="this.style.cursor='hand';"/>
+				<!--backljuslampa-->					
+				<v:shape id="$backinglight" title="backljuslampa" coordsize="71 13" style="left:350px;top:50px;width:71px;height:13px" 
+						path="m0,0 l 100,0 100,200 0,200xe"	fillcolor="#FFFFFF" onmouseover="this.style.cursor='hand';"/>			 
+
+			</v:group>

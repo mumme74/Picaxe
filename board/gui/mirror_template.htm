@@ -1,0 +1,107 @@
+<!-- svg för Mirror widgeten-->
+<svg width="600" height="600">
+  <g id="$mirrorcommon" style="top:0;left:0;width:600px;height:600px;">
+    <g id="$foldingmirror">
+      <!--blinkersljus-->
+      <path id="$blinklightbeam" transform="translate(0,60)" style="fill:#FFC321;stroke:none;opacity:0.4;visibility:hidden;"
+          d="M90,170 A70,70 0 1 1  170,75 Z" 
+          stroked="false"/>
+      <!--blinkers-->
+      <path id="$blinker" transform="translate(80,135)" style="fill:#FFC321;stroke:#000;"
+          d="M0,80 L 1,60 3,50 Q14,30 45,9 Q60,4 66,4 L 78,1 93,0Z"
+          onmouseover="this.style.cursor='hand'"/>
+      <!--trygghetsljus-->
+      <path id="$safelightbeam" transform="translate(255,60)" style="opacity:0.5;fill:#EAFFA5;stroke:none;visibility:hidden;"
+          d="M50,100 L0,50 A 100,100 0 0 1 250,140 L220,170 Z"
+          stroked="false"/>
+      <!--trygghetslampa-->
+      <path id="$safelight" transform="translate(344,83)" style="fill:#FFF;stroke:#000;" 
+          d="M0,11 L 6,4 Q26,0 26,1 Q33,0 46,0 L 66,4  71,11Z"	
+          fillcolor="#FFF" onmouseover="this.style.cursor='hand';"/>
+
+      <!--spegelkåpa-->
+      <path transform="translate(80,89)" coordsize="400 136" style="fill:silver;stroke:#000;"
+          d="M0,136 L 1,126 3,116 Q6,108 9,103 L18,89 27,81 38,73
+                50,66 93,46 150,28 230,8 310,0
+                335,5 345,10 355,18 367,36 385,76
+                L 400,126 0,136Z" fillcolor="silver"/>
+      <!--ram-->
+      <path transform="translate(80,215)"  style="fill:#555;stroke:#000;"
+          d="M0,10 L 400,0 397,20 1,20 0,10" fillcolor="#555"/>
+ 
+      <!-- rita spegel positionspilarna -->
+      <g id="$positionarrows" transform="translate(150,240) scale(0.8)"
+          title="Även piltangenter fungerar, mellanslag avbryter rörelsen">
+        <path id="$up_arrow" transform="translate(100,0)" style="fill:#FFED9E;stroke:#000;" 
+            d="M25,0 L 50,20 40,20 38,80 12,80 10,20 0,20Z" onmouseover="this.style.cursor='hand'"/>
+        <path id="$left_arrow" transform="translate(0,80)" style="fill:#FFED9E;stroke:#000;"
+            d="M0,21 L 19,0 20,11 99,11 100,31 21,31 22,40Z" onmouseover="this.style.cursor='hand'"/>
+        <path id="$right_arrow" transform="translate(148,80)" style="fill:#FFED9E;stroke:#000;"
+            d="M100,21 L 79,40 80,31 0,31 1,11 81,11 82,0Z" onmouseover="this.style.cursor='hand'"/>
+        <path id="$down_arrow" transform="translate(100,118)" style="fill:#FFED9E;stroke:#000;"
+            d="M25,70 L 5,58 15,58 13,0 37,0 35,58 45,58Z" onmouseover="this.style.cursor='hand'"/>
+      </g>
+    </g>
+
+
+    <!--blinksymbol-->
+    <g id="$blinksymbol" transform="translate(10,10) rotate(-45, 35,35)" width="70" height="70"
+         onmouseover="this.style.cursor='hand'">
+      <path id="$blinksymbolfield1" style="width:70px;height:70px;fill:#FFF;stroke:#000;"
+          d="M35,35 L 35,0 A35,35 0 0 1 70 35 L0,35 A35,35 0 0 0 35 70 L35,35Z"/>
+      <path id="$blinksymbolfield2" style="width:70px;height:70px;fill:#000;stroke:#000;"
+          d="M35,35 L 35,0 A35,35 0 0 0 0 35 L70,35 A35,35 0 0 1 35 70 L35,35Z"/>
+    </g>
+    <!--slut blinksymbol-->
+
+    <!--värmesymbol-->
+    <g id="$heatersymbolgroup" transform="translate(110,20)" width="70" height="45">
+      <rect id="$heatsymbol" style="fill:#7CC4FF;stroke:#000;"
+          x="0" y="0" width="70" height="45" rx="10" ry="10"
+          onmouseover="this.style.cursor='hand';"/>
+      <path id="$heatwaves" style="fill:none;stroke:#000; stroke-width:2px;" 
+          d="M23,5 Q26,5 26,13.75 Q26,18 23,22.5 Q20,27 20,31.25 Q20,40 23,40
+             M35,5 Q38,5 38,13.75 Q38,18 35,22.5 Q32,27 32,31.25 Q32,40 35,40
+             M47,5 Q50,5 50,13.75 Q50,18 47,22.5 Q44,27 44,31.25 Q44,40 47,40"
+          onmouseover="this.style.cursor='hand';"/>
+    </g>
+    <!--slut väremsymbol-->
+
+    <!--tryggbelsymbol-->
+    <g id="$safelightsymbol" transform="translate(210,10) rotate(45, 35,35)" width="70" height="70"
+        onmouseover="this.style.cursor='hand'">
+      <path id="$safelightsymbolfield1" style="width:70px;height:70px;fill:#FFF;stroke:#000;"
+          d="M35,35 L 35,0 A35,35 0 0 1 70 35 L0,35 A35,35 0 0 0 35 70 L35,35Z"/>
+      <path id="$safelightsymbolfield2" style="width:70px;height:70px;fill:#FFF;stroke:#000;"
+          d="M35,35 L 35,0 A35,35 0 0 0 0 35 L70,35 A35,35 0 0 1 35 70 L35,35Z"/>
+    </g>
+    <!--slut tryggbelsymbol-->
+
+
+    <!--fällpil-->
+    <g transform="translate(60,290)" width="200" height="200">
+      <path id="$foldarrow" style="fill:#FFF;stroke:#000;cursor:hand;"
+        d="M10,20 L 0,20 20,0 40,20 30,20 Q30,170 180,170 L 180,160 200,180 180,200 180,190 Q10,190 10,20Z"
+        onmouseover="this.style.cursor='hand';"/>
+    </g>
+
+    <!--termometer-->
+    <g id="$thermometer" transform="translate(0,100)" width="70" height="140" coordsize="70 140"
+        onmouseover="this.style.cursor='hand';">
+      <text style="margin:0;padding:0;" x="10" y="80">16&deg;</text>
+      <text style="margin:0;padding:0;" x="10" y="60">20&deg;</text>
+      <text style="margin:0;padding:0;" x="10" y="40">24&deg;</text>
+      <text style="margin:0;padding:0;" x="10" y="20">28&deg;</text>
+      
+      <path coordsize="70 120" style="left:0px;top:0px;height:120px;width:70px;fill:red;stroke:#000;"
+          d="M40,0 L 60,0 60,90 A15,15 0 1 1 40,90 L 40,0 Z"/>
+      <rect id="$thermometerscale" style="left:40px;top:0px;width:20px;height:100px;fill:blue;stroke:none;" x="40" y="0" width="20" height="100"/>
+      <line x1="30" y1="80" x2="70" y2="80" style="stroke:#666;"/>
+      <line x1="30" y1="60" x2="70" y2="60" style="stroke:#666;"/>
+      <line x1="30" y1="40" x2="70" y2="40" style="stroke:#666;"/>
+      <line x1="30" y1="20" x2="70" y2="20" style="stroke:#666;"/>
+      <rect id="$thermometerupdate" x="25" y="125" width="50" height="20" rx="5" ry="5" style="top:120px;left:20px;width:50px;height:20px;fill:#999;stroke:#666;" fillcolor="#999"/>
+      <text id="$thermometerupdatetext" style="mso-fit-text-to-shape:true;" x="35" y="140" inset="2px, 2px, 2px, 2px">Auto</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+Kommandoförteckning näteverksexperiment
+
+	Högst prio längst upp
+<	vänster blink
+=	bromsljus (symbol 2 bromsspår)
+>	höger blinkers
+?	
+@	positionsljus (parkeringsljus)
+A	
+B	
+C	
+D	
+E	
+F	flasher (varningsljus)
+G	
+H	helljus (high)
+I	Signalhorn (irriterande)
+J	
+K	
+L	halvljus (low)
+M	Strålkastarvinkel
+N	
+O	
+P	Trygghetsbelysning
+Q	Avbryt spegelrörelser (båda speglar)
+R	Backljus
+S	Defroster speglar
+T	Fråga höger spegel (tex T1 = Ypos)
+U	Höger X (upp-ned)
+V	Höger Y (vänster-höger)
+W	Fråga vänster spegel (tex W0 = xpos)
+X	Vänster X (upp-ned)
+Y	Vänster Y (vänster-höger)
+Z	Fäll speglar
+
+	Lägst prio längst ned

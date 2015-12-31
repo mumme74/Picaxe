@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Terminal med software flow control</title>
+  <style type="text/css">
+    body {
+      font-family: arial;
+      font-size: 12pt;
+      color: navy;
+      background-color: blue;
+    }
+
+    #pageroot {
+      background-color: white;
+      border: 1px solid black;
+      margin:10pt;
+      padding: 10pt;
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    #inputs {
+      border: 1px dashed gray;
+      width: 200px;
+      height: 350px;
+    }
+
+    #dashBoardContainer {
+      border: 1px dashed gray;
+      width: 450px;
+      position: relative;
+      float:left;
+      left: 0px;
+      top: 0px;
+      height:500px;
+    }
+
+    #rightMirrorContainer {
+      border: 1px dashed gray;
+      width: 400px;
+      /*position: relative;
+      float:right;*/
+      left: 0px;
+      top: 0px;
+      height:500px;
+    }
+
+    #main {
+      border: 0px solid black;
+      position: relative;
+      min-width: 750px;
+    }
+                
+    #serverConnected {
+      display:inline-block;
+      height: 32px;
+      width: 32px;
+      border-radius: 5px;
+      border: 1px solid gray;
+      background: #CCC;
+      background-image: url(disconnect.png);
+      background-repeat: no-repeat;
+    }
+    #serverConnected[webConnected] {
+      background: green;
+      background-image: url(disconnect.png);
+    }
+    #serverConnected[webConnected][picaxeConnected] {
+      background-image: url(connect.png);
+    }
+  </style>
+  <script type="text/javascript">
+    var picaxeSettings = {
+      logRootNode: "logContainer",
+      comportSelectId: "comport",
+      protocolFile: "protocol.js",
+      handshaking: 1 // använd Xon, Xoff
+      /*,connectionSettings: "38400,N,8,1"*/ //,connectionSettings: "9600,N,8,1" // av kommentera om du ändrar processor frekvensen till 8Mhz
+    };
+  </script>
+  <script type="text/javascript" src="helpers.js"></script>
+  <script type="text/javascript" src="picaxeinterface.js"></script>
+
+  <script type="text/javascript">
+    picaxe.cleanResponse = false;
+    picaxe.portSettings.xonxoff = true;
+    picaxe.portSettings.timeout = 2;
+    picaxe.portSettings.baudrate = 4800;
+
+    addOnDOMLoad(function(){
+  
+      var textarea = document.getElementById('reciever');
+      textarea.value = "";
+      document.getElementById('commandbox').focus();
+    });
+
+    function recievedMsg(msg){
+      var reciever = document.getElementById('reciever');
+      // ersätt controll chars
+      var newMsg = "";
+      for(var i = 0; i < msg.length; ++i){
+        if (msg.charCodeAt(i) < 32) {
+          newMsg += "{" + msg.charCodeAt(i)+ "}"; 
+          if (msg.charCodeAt(i) == 10) {
+            newMsg += "\n"
+          }
+        } else {
+          newMsg += msg.charAt(i);
+        }
+      }
+  
+      // trimma bort för många rader
+      var value = reciever.value;
+      var values = value.split("\n");
+      if (values.length > 40){
+        values = values.slice(1);
+        value = values.join("\n");
+      }
+
+      reciever.value = value + newMsg;
+      reciever.scrollTop = reciever.scrollHeight;
+    }
+
+    picaxe.addRecieveListener(recievedMsg);
+
+    function sendCommand(){
+      var inputbox = document.getElementById('commandbox');
+      if (inputbox.value) {
+        var value = inputbox.value;
+        if (document.getElementById("numbersToByte").checked){
+          var arr = value.split("{");
+          for(var i = 1; i < arr.length; i++){
+            var idx = arr[i].indexOf('}');
+            if (idx < 1){
+              alert("Du har inte angett en slut hakparantes\r\n nummer måste inneslutas med dessa {0-255}");
+              return;
+            }
+            var num = Number(arr[i].substring(0, idx));
+            arr[i] = String.fromCharCode(num) + arr[i].substr(idx + 1);
+          }
+          value = arr.join('');
+        }
+      }
+
+      picaxe.commandToPicaxe(value);
+      return false;
+    }
+  
+    addOnDOMLoad(function() {
+      // stoppa loggning om den inte är checkad	
+      setTimeout(function(){picaxe.log.setActive(document.forms[0].elements["logCheckbox"].checked)}, 200);
+    });
+  </script>
+</head>
+<body>
+  <form id="pageroot" onsubmit="sendCommand(); return false;">
+    <h3>Skicka kommandon</h3>
+    Använd handskakning när du kommunicerar med kortet (krävs för nätverk) 
+    <input type="checkbox" id="handshake" checked="true" onclick="picaxe.setHandshaking(this.checked)"/> <br/><br/>
+    <div>
+      <div id="serverConnected"></div>
+      <select id="comport" onchange="picaxe.setComport(this.value)"></select> &nbsp; &nbsp; 
+      Processor hastighet (setfreq kommando i picaxe kod)
+      <select id="speed" onchange="picaxe.setBaud(this.value)">
+        <option value="4800" selected>Standard (4Mhz)</option>
+        <option value="9600">setfreq m8 (8Mhz)</option>
+        <option value="19200">setfreq m16 (16Mhz)</option>
+        <option value="38400">setfreq m32 (32Mhz)</option>
+      </select> <br/><br/> 		
+    </div>
+    <div id="main">
+      <div class="instrument">
+        Svar från picaxe &nbsp; &nbsp; 
+        <input type="checkbox" onclick="picaxe.log.setActive(this.checked)" name="logCheckbox" /><!--checked="true"-->
+        <label for="logCheckbox">Logga trafiken mellan dator och picaxe</label><br/>
+        <textarea id="reciever" readonly="true" cols="70" rows="15"></textarea><br/>
+          Skicka till picaxe: <input type="text" id="commandbox" value="" />
+          <input type="button" value="Skicka" onclick="sendCommand()"/><br/>
+          Gör om siffror inom {} till ett ascii värde innan det skickas
+          <input type="checkbox" id="numbersToByte" checked="true"/><br/><br/>
+      </div>
+    </div>
+    <div id="logContainer"></div>
+    <pre id="debug"></pre>
+  </form>
+</body>
+</html>
