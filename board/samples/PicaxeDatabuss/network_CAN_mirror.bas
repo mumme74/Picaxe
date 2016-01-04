@@ -39,10 +39,10 @@
 'CNF2/BRGCON2    b'10001000'     0x88
 'CNF3/BRGCON3    b'00000011'     0x03'
 
-#define LEFT
+#define LEFT_MIRROR
 #define LOOPBACK
 
-#ifdef LEFT
+#ifdef LEFT_MIRROR
 symbol blinker = "<"
 #else
 symbol blinker = ">"
@@ -157,7 +157,7 @@ symbol responseValue    = b21
 
 
 
-#ifdef LEFT
+#ifdef LEFT_MIRROR
 	symbol blinkerKey = "<"
 	symbol Xkey = "X"
 	symbol Ykey = "Y"
