@@ -25,6 +25,7 @@
 
     this.leftBlinker = new DashBoardBlinker(this, "leftBlink");
     this.rightBlinker = new DashBoardBlinker(this, "rightBlink");
+    this.flasher     = new DashBoardFlasher(this);
     this.brakeLight = new DashBoardBrakeLight(this);
     this.parkLight = new DashBoardParkLight(this);
     this.backingLight = new DashBoardBackingLight(this);
@@ -63,6 +64,8 @@
       // events från noder till denna class
       attachOnClick("leftblinker", this.leftBlinker.toggle);
       attachOnClick("rightblinker", this.rightBlinker.toggle);
+      attachOnClick("flasher", this.flasher.toggle);
+      attachOnClick("flashersymbol", this.flasher.toggle);
       attachOnClick("brakelight", this.brakeLight.toggle);
       attachOnClick("brakelightletter", this.brakeLight.toggle);
       attachOnClick("parklight", this.parkLight.toggle);
@@ -108,7 +111,27 @@
     this.getState = function(){ return state; }
     
     // events från picaxekabeln till denna class
-    ownerDashBoard._picaxe.connectTo(ownerDashBoard._protocolIdentity, protocolKey, me.setState, me); 
+    ownerDashBoard._picaxe.connectTo(ownerDashBoard._protocolIdentity, protocolKey, me.setState, me);
+    ownerDashBoard._picaxe.connectTo(ownerDashBoard._protocolIdentity, 'flasher', me.setState, me); 
+  }
+
+  DashBoardFlasher = function(ownerDashBoard){
+    var state = false;
+    var me = this;
+    var protocolKey = "flasher";
+    this.toggle = function (){
+      me.setState(!state);
+      ownerDashBoard._picaxe.sendCommand(ownerDashBoard._protocolIdentity, protocolKey, Number(state));
+    }
+    this.setState = function(newState){
+      state = newState;
+      // ownerDashBoard._getNode(protocolKey + "lightbeam").style.visibility = state ? "visible" : "hidden";
+      ownerDashBoard._getNode(protocolKey.toLowerCase()).style.fill = state ? "#f33d0c" : "#ee9758";
+    }
+    this.getState = function(){ return state; }
+    
+    // events från picaxekabeln till denna class
+    ownerDashBoard._picaxe.connectTo(ownerDashBoard._protocolIdentity, protocolKey, me.setState, me);
   }
   
   DashBoardBrakeLight = function(ownerDashBoard) {

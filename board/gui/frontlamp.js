@@ -97,6 +97,7 @@
    
     // events från picaxekabeln till denna class
     ownerFrontLamp._picaxe.connectTo(ownerFrontLamp._protocolIdentity, protocolKey, me.setState, me); 
+    ownerFrontLamp._picaxe.connectTo(ownerFrontLamp._protocolIdentity, "flasher", me.setState, me); 
   }
   
   

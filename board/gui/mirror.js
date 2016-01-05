@@ -398,6 +398,7 @@
     
     // events från picaxekabeln till denna class
     ownerMirror._picaxe.connectTo(ownerMirror._protocolIdentity, "blinker", me.setState, me); 
+    ownerMirror._picaxe.connectTo(ownerMirror._protocolIdentity, "flasher", me.setState, me); 
   }
   
   MirrorSafeLight = function(ownerMirror) {

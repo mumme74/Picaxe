@@ -96,6 +96,7 @@
     
     // events från picaxekabeln till denna class
     ownerRearLamp._picaxe.connectTo(ownerRearLamp._protocolIdentity, protocolKey, me.setState, me); 
+    ownerRearLamp._picaxe.connectTo(ownerRearLamp._protocolIdentity, "flasher", me.setState, me); 
   }
   
   RearLampBrakeLight = function(ownerRearLamp) {

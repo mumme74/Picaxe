@@ -29,6 +29,7 @@
 		cancel:'Q',		// avbryt flytt
 		fold: 'Z', 		// Fäll in eller ut spegel 1=ut, 0 = in
 		blinker: '<', 	// blinkljus 1= på, 0=av
+		flasher:  'F',   // flasher
 		safeLight: 'P', // trygghetsljus 1=på, 0=av
 		Xpos: 'W0',	    // hämta Xpos (upp-ned)
 		Ypos: 'W1',		// hämta Ypos (vänster-höger)
@@ -41,6 +42,7 @@
 		cancel:'Q',		// avbryt flytt
 		fold: 'Z', 		// Fäll in eller ut spegel 1=ut, 0 = in
 		blinker: '>', 	// blinkljus 1= på, 0=av
+		flasher:  'F',   // flasher
 		safeLight: 'P', // trygghetsljus 1=på, 0=av
 		Xpos: 'T0',	    // hämta Xpos (upp-ned)
 		Ypos: 'T1',		// hämta Ypos (vänster-höger)
@@ -52,6 +54,7 @@
 		lowBeam:  'L',	 // halvljus
 		parkLight:'@',	 // parkeringsljus
 		blinker:  '<',   // blinkers
+		flasher:  'F',   // flasher
 		angle:    'M'	 // ljuslängdsvinkel
 	},
 	rightHeadlamp: {
@@ -59,24 +62,28 @@
 		lowBeam:  'L',	 // halvljus
 		parkLight:'@',	 // parkeringsljus
 		blinker:  '>',   // blinkers
+		flasher:  'F',   // flasher
 		angle:    'M'    // ljuslängdsvinkel
 	},
 	leftRearLamp: {
 		parkLight: '@', // parkering
 		brakeLight:'=', // bromsljus
 		blinker:   '<', // blinkers
+		flasher:  'F',   // flasher
 		backingLight:  'R'  // backljus
 	},	
 	rightRearLamp: {
 		parkLight: '@', // parkering
 		brakeLight:'=', // bromsljus
 		blinker:   '>', // blinkers
+		flasher:  'F',   // flasher
 		backingLight:  'R'  // backljus
 	},
 	dashBoard: {
 		beeper:    'I',  // Signalhorn
 		leftBlink: '<',  // vänsterblinkers
 		rightBlink:'>',  // högerblinkers
+		flasher:   'F',  // flasher
 		highBeam:  'H',   // helljus
 		lowBeam:   'L',	 // halvljus
 		backingLight:  'R', // backljus
