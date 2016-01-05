@@ -123,7 +123,7 @@ digitalRead:
     lookup b1, (%00000001, %00000010, %00000100, %00001000, %00010000, %00100000, %01000000, %10000000), b3
 	
     ' AND krets, ta bara det benet vi vill läsa
-    b2 = pins AND b3 
+    b2 = pinsB AND b3 
     if b2 > 0 then
         b2 = 1
     end if
