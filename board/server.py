@@ -83,7 +83,7 @@ class PicaxeInterface(WebSocket):
       available.append((port, port))
       if (('USB VID:PID=0403:bd90' in hwid) or 
           ('USB VID:PID=403:bd90' in hwid)):
-	 default = len(available) -1
+        default = len(available) -1
     return {'ports': available, 'default': default }
 
 
