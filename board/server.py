@@ -187,7 +187,7 @@ class SerialInterface:
             self.port.flush()
             #print("sending to circuit:" + d.decode('iso-8859-1'))
           elif data != chr(19):
-            self.data += data.decode('iso-8859-1')
+            self.data += data
       #print("websock\r\n")
       # handle websocket requests here
       self.websockserver.serve(continous=False) # timeouts immediatly
