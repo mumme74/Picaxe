@@ -40,7 +40,7 @@
 'CNF3/BRGCON3    b'00000011'     0x03'
 
 #define LEFT
-#define LOOPBACK
+'#define LOOPBACK
 
 #ifdef LEFT
 symbol blinker = "<"
@@ -141,7 +141,7 @@ symbol Xoff             = 19
 symbol blinkerSide      = b10
 symbol toggleState      = b11
 symbol toggleCounter    = b12
-symbol toggleAt         = 12
+symbol toggleAt         = 9
 symbol leftKey          = "<"
 symbol rightKey         = ">"
 
@@ -184,20 +184,26 @@ resetValues:
 
 ' this sub is the blinkrelay function
 blinkToggler:
-	if  toggleCounter < toggleAt then
-		toggleCounter = toggleCounter +1
-	else
-		' counter overflow, toggle our blinker
-		toggleCounter = 0
-		if blinkerSide > 0 then
-			toggleState = not toggleState
+	if  blinkerSide > 0 then
+		if  toggleCounter < toggleAt then
+			inc toggleCounter
+		else
+			' counter overflow, toggle our blinker
+			toggleCounter = 0
+			if toggleState > 0 then
+				toggleState = 0
+			else
+				toggleState = 1
+			end if
+			toggle B.6
 			command = blinkerSide
 			state = toggleState +48
 			value = 0
 			gosub sendMsg ' to other nodes
 			gosub cmdToSerial ' to laptop client
-		end if
-	endif
+			gosub resetValues
+		endif
+	end if
 	return
 
 ' checks if we should change the blinkstate
@@ -251,11 +257,13 @@ update:
 	return
 
 cmdToSerial:
-	if value > 0 then
-		' has a value
-		sertxd(command, state, "=",#value,"\r\n")
-	else
-		sertxd(command, state, "\r\n")
+	if command > 0 then
+		if value > 0 then
+			' has a value
+			sertxd(command, state, "=",#value,"\r\n")
+		else
+			sertxd(command, state, "\r\n")
+		end if
 	end if
 	return
 

@@ -40,11 +40,12 @@
 'CNF3/BRGCON3    b'00000011'     0x03'
 
 #define LEFT
-#define LOOPBACK
+'#define LOOPBACK
 
 #ifdef LEFT
 symbol blinker = "<"
 #else
+
 symbol blinker = ">"
 #endif
 
@@ -189,11 +190,13 @@ update:
 	return
 
 cmdToSerial:
-	if value > 0 then
-		' has a value
-		sertxd(command, state, "=",#value,"\r\n")
-	else
-		sertxd(command, state, "\r\n")
+	if command > 0 then
+		if value > 0  then
+			' has a value
+			sertxd(command, state, "=",#value,"\r\n")
+		else
+			sertxd(command, state, "\r\n")
+		end if
 	end if
 	return
 

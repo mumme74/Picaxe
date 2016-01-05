@@ -39,10 +39,10 @@
 'CNF2/BRGCON2    b'10001000'     0x88
 'CNF3/BRGCON3    b'00000011'     0x03'
 
-#define LEFT_MIRROR
-'#define LOOPBACK
+#define LEFT
+#define LOOPBACK
 
-#ifdef LEFT_MIRROR
+#ifdef LEFT
 symbol blinker = "<"
 #else
 symbol blinker = ">"
@@ -157,7 +157,7 @@ symbol responseValue    = b21
 
 
 
-#ifdef LEFT_MIRROR
+#ifdef LEFT
 	symbol blinkerKey = "<"
 	symbol Xkey = "X"
 	symbol Ykey = "Y"
@@ -193,10 +193,9 @@ main:
 	
 	gosub update ' must run each loop for motorcontrol to work
 	if command > 0 then
-		gosub returnValues ' if we got a measurement request from CAN ' measured in update	
+		gosub returnValues ' if we got a measurement request from CAN ' measured in update
 		gosub resetValues
 	end if
-
 	
 	 ' used to stop motors from moving to much
 	if stopCounter > 0 then
@@ -294,13 +293,11 @@ returnValues:
 	return
 
 cmdToSerial:
-	if command > 0 then
-		if value > 0 then
-			' has a value
-			sertxd(command, state, "=",#value,"\r\n")
-		else
-			sertxd(command, state, "\r\n")
-		end if
+	if value > 0 then
+		' has a value
+		sertxd(command, state, "=",#value,"\r\n")
+	else
+		sertxd(command, state, "\r\n")
 	end if
 	return
 
@@ -368,7 +365,7 @@ sendMsg:
 		return
 	end if
 
-	tmp = recv  and %11000000  ' or TXB2 ready to send?
+	tmp = recv  and %11000000  ' or TXB1 ready to send?
 	if tmp = %10000000 or tmp = 0 then
 		 tmp =  LOAD_TX_BUF_2_ID : gosub _loadTXBuf
 		 tmp = SEND_TX_BUF_2 : gosub _sendTXBuf
