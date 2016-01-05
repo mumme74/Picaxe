@@ -78,11 +78,11 @@ class PicaxeInterface(WebSocket):
     for port, desc, hwid in iterator:
       #print("%-20s" % (port,))
       #print("    desc: %s" % (desc,))
-      #print("    hwid: %s" % (hwid,))
+      #print("    hwid: %s" % (hwid.upper(),))
       #print(hwid[-9:])
       available.append((port, port))
-      if (('USB VID:PID=0403:bd90' in hwid) or 
-          ('USB VID:PID=403:bd90' in hwid)):
+      if (('USB VID:PID=0403:BD90' in hwid.upper()) or 
+          ('USB VID:PID=403:BD90' in hwid.upper())):
         default = len(available) - 1
     return {'ports': available, 'default': default }
 
