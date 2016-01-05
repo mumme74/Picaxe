@@ -10,7 +10,7 @@ if os.name == 'nt': #sys.platform == 'win32':
 elif os.name == 'posix':
   from serial.tools.list_ports_posix import *
 
-from webserver.SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
+from SimpleWebSocketServer.SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
 HTTP_PORT = 8000
 WS_PORT = 8080
 
@@ -25,17 +25,17 @@ class PicaxeInterface(WebSocket):
     
     #print self.data
     reqObj = json.loads(str(self.data))
-    print reqObj
+    print (reqObj)
     
     
     if not 'id' in reqObj:
-      print "no id ", reqObj
+      print ("no id ", reqObj)
       return # invalid
     
     try:
       args = None
       if 'args' in reqObj:
-				args = reqObj['args']
+        args = reqObj['args']
       retData = self._doCommand(reqObj['cmd'], args)
     except:
       #print(sys.exc_info()[1])
@@ -47,20 +47,20 @@ class PicaxeInterface(WebSocket):
     
     # echo message back to client
     msg = json.dumps({'id': reqObj['id'], 'data': retData})
-    self.sendMessage(msg)
+    self.sendMessage(unicode(msg))
     print(msg)
       
   def handleConnected(self):
     msg = json.dumps({"connected": self.address})
-    self.sendMessage(msg)
-    print(msg)
-    #print(self.address, 'connected')
+    self.sendMessage(unicode(msg))
+    #print(msg)
+    print(self.address, 'connected')
       
   def handleClose(self):
     msg = json.dumps({"disconnected": self.address})
-    print(msg)
-    self.sendMessage(msg)
-    #print(self.address, 'closed')
+    #print(msg)
+    self.sendMessage(unicode(msg))
+    print(self.address, 'closed')
 
   def _doCommand(self, cmd, args = None):
     if cmd == "listSerialPorts":
@@ -78,31 +78,44 @@ class PicaxeInterface(WebSocket):
     else:
       # send command to picaxe
       if self.port and self.port.writable():
-				self.port.flushInput()
-				self.port.write(str(cmd))
-				return self.port.read(20)
+        self.port.flushInput()
+        self.port.write(str(cmd))
+        return self.port.read(20)
       else:
-				print("port not opened, aborting write")
-				return ""
+        print("port not opened, aborting write")
+        return ""
       
   def _scanPorts(self):
     available = []
-    #import serial.tools.list_ports
+    default = -1
     iterator = sorted(comports())
     for port, desc, hwid in iterator:
-      #print("%-20s" % (port,))
-      #print("    desc: %s" % (desc,))
-      #print("    hwid: %s" % (hwid,))
-      #print(hwid[-9:])
-      if ('USB VID:PID=0403:bd90' in hwid) or ('USB VID:PID=403:bd90' in hwid):
-	 			available.append((port, port))
-    return available
+      print("%-20s" % (port,))
+      print("    desc: %s" % (desc,))
+      print("    hwid: %s" % (hwid.upper(),))
+      print(hwid[-9:])
+      available.append((port, port))
+      if (('USB VID:PID=0403:BD90' in hwid.upper()) or 
+          ('USB VID:PID=403:BD90' in hwid.upper())):
+        default = len(available) - 1
+    return {'ports': available, 'default': default }
+
+def printTrace():
+  import traceback, os
+  exc_type, exc_obj, exc_tb = sys.exc_info()
+  fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+  print(exc_type,sys.exc_info()[1],fname, exc_tb.tb_lineno)
+  print(traceback.format_exc())
+
 
 
 if __name__ == "__main__":
   #start http server as a subprocess
-  subprocess.Popen("cd gui && python -m SimpleHTTPServer " + str(HTTP_PORT), shell=True)
+  if sys.version_info[0] >= 3:
+    subprocess.Popen("cd gui && python -m http.server " + str(HTTP_PORT), shell=True)
+  else:
+    subprocess.Popen("cd gui && python -m SimpleHTTPServer " + str(HTTP_PORT), shell=True)
   
   # websocket server
   server = SimpleWebSocketServer('', WS_PORT, PicaxeInterface)
-  server.serveforever()
+  server.serve()
