@@ -57,14 +57,14 @@ class PicaxeInterface(WebSocket):
       
   def handleConnected(self):
     msg = json.dumps({"connected": self.address})
-    self.sendMessage(msg)
+    self.sendMessage(unicode(msg))
     print(msg)
     print(self.address, 'connected')
       
   def handleClose(self):
     msg = json.dumps({"disconnected": self.address})
     print(msg)
-    self.sendMessage(msg)
+    self.sendMessage(unicode(msg))
     #print("curent listenerns count:", len(self.server.listeners))
     if len(self.server.listeners) <= 3:
       # we dont have any active listeners, disconnect serial port
