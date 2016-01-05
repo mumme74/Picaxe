@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import sys
 import subprocess
@@ -9,6 +10,13 @@ if os.name == 'nt': #sys.platform == 'win32':
   from serial.tools.list_ports_windows import *
 elif os.name == 'posix':
   from serial.tools.list_ports_posix import *
+
+try:
+  unicode
+except (NameError, AttributeError):
+  def unicode(x):
+    return x # for Python 3
+
 
 from SimpleWebSocketServer.SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
 HTTP_PORT = 8000
@@ -37,6 +45,11 @@ class PicaxeInterface(WebSocket):
       if 'args' in reqObj:
         args = reqObj['args']
       retData = self._doCommand(reqObj['cmd'], args)
+
+      # echo message back to client
+      msg = json.dumps({'id': reqObj['id'], 'data': retData})
+      self.sendMessage(unicode(msg))
+      print(msg)
     except:
       #print(sys.exc_info()[1])
       import traceback
@@ -44,11 +57,7 @@ class PicaxeInterface(WebSocket):
       fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
       print(exc_type,sys.exc_info()[1],fname, exc_tb.tb_lineno)
       print(traceback.format_exc())
-    
-    # echo message back to client
-    msg = json.dumps({'id': reqObj['id'], 'data': retData})
-    self.sendMessage(unicode(msg))
-    print(msg)
+
       
   def handleConnected(self):
     msg = json.dumps({"connected": self.address})
@@ -79,8 +88,10 @@ class PicaxeInterface(WebSocket):
       # send command to picaxe
       if self.port and self.port.writable():
         self.port.flushInput()
-        self.port.write(str(cmd))
-        return self.port.read(20)
+        self.port.write(str(cmd).encode('iso-8859-1'))
+        res = self.port.read(20).decode('iso-8859-1')
+        #print("reponse to " + cmd + " was: " + res)
+        return res
       else:
         print("port not opened, aborting write")
         return ""
@@ -90,10 +101,10 @@ class PicaxeInterface(WebSocket):
     default = -1
     iterator = sorted(comports())
     for port, desc, hwid in iterator:
-      print("%-20s" % (port,))
-      print("    desc: %s" % (desc,))
-      print("    hwid: %s" % (hwid.upper(),))
-      print(hwid[-9:])
+      #print("%-20s" % (port,))
+      #print("    desc: %s" % (desc,))
+      #print("    hwid: %s" % (hwid.upper(),))
+      #print(hwid[-9:])
       available.append((port, port))
       if (('USB VID:PID=0403:BD90' in hwid.upper()) or 
           ('USB VID:PID=403:BD90' in hwid.upper())):
