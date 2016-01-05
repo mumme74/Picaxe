@@ -83,7 +83,7 @@ class PicaxeInterface(WebSocket):
       available.append((port, port))
       if (('USB VID:PID=0403:bd90' in hwid) or 
           ('USB VID:PID=403:bd90' in hwid)):
-        default = len(available) -1
+        default = len(available) - 1
     return {'ports': available, 'default': default }
 
 
@@ -108,7 +108,7 @@ class SerialInterface:
         #xonxoff = args['xonxoff'],
         timeout = 0.005 # args['timeout']
         #,stopbits = serial.STOPBITS_TWO
-        ,interCharTimeout=0.001
+        ,inter_byte_timeout=0.001 #,interCharTimeout=0.001
       )
       #self.port.open()
       
@@ -123,7 +123,7 @@ class SerialInterface:
   def close(self):
     print("closing port")
     try:
-      fileno = self.port.fileno()
+      #fileno = self.port.fileno()
       #del self.server.connections[fileno]
       #self.server.listeners.remove(fileno)
       self.port.close()
@@ -163,7 +163,7 @@ class SerialInterface:
           gotData = False
           #print("read from board" + str(self.port.timeout) + "\r\n")
           while data[-2:] != "\r\n":
-            c = self.port.read(1)
+            c = self.port.read(1).decode('iso-8859-1')
             if len(c) == 0 or c == chr(17) or c == chr(19):
               break
             data += c
@@ -171,9 +171,8 @@ class SerialInterface:
 
           if gotData:
             #print("after read\r\n")
-            data = data.decode('iso-8859-1')
             data = data.replace(chr(17), "").replace(chr(19), "")
-            for client in self.websockserver.connections.itervalues():
+            for client in self.websockserver.connections.values():
               if client != self.port:
                 client.sendMessage(unicode(json.dumps({'data': data})))
             self.data = ""
@@ -181,14 +180,14 @@ class SerialInterface:
         # handles send to board (using xon and xoff)
         if len(self.sendData) > 0:
           #print("write to board\r\n")
-          data = self.port.read(1) # wait until timeout
+          data = self.port.read(1).decode('iso-8859-1') # wait until timeout
           if data == chr(17):
             d = self.sendData.pop(0)
             self.port.write(d)
             self.port.flush()
-            #print("sending to circuit:" + d)
+            #print("sending to circuit:" + d.decode('iso-8859-1'))
           elif data != chr(19):
-            self.data += data
+            self.data += data.decode('iso-8859-1')
       #print("websock\r\n")
       # handle websocket requests here
       self.websockserver.serve(continous=False) # timeouts immediatly
