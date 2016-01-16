@@ -597,6 +597,9 @@ class SimpleWebSocketServer(object):
          except:
             pass
 
+   def serveforever(self):
+      self.serve()
+
    def serve(self, continous = True):
       cont = True
       while cont:
