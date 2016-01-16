@@ -43,6 +43,7 @@ var picaxe = {};
       this._socket.onopen = function(evt) {
         addOnDOMLoad(function(){
           document.getElementById("serverConnected").setAttribute("webConnected", true);
+          document.getElementById("serverConnected").setAttribute("picaxeConnected", true);
           debug("connected:" + evt); 
       
           webSocket._sendNext();
@@ -50,6 +51,7 @@ var picaxe = {};
       };
       this._socket.onclose = function(evt) { 
         document.getElementById("serverConnected").removeAttribute("webConnected");
+          document.getElementById("serverConnected").removeAttribute("picaxeConnected");
         debug("disconnected:" + evt); 
       };
       this._socket.onmessage = webSocket._recieved;
@@ -113,8 +115,15 @@ var picaxe = {};
       if (picaxe._protocol !== null) {
         picaxe.loadProtocol(picaxe._protocol);
       }
+      addOnLoad(function(){
+        document.getElementById(picaxe.comportSelectId).style.display = "none";
+        if (picaxeSettings.logRootNode) {
+            picaxe.log.setLogRootNode(picaxeSettings.logRootNode);
+            picaxe.log.setActive(true);
+        } 
+      });
       // find out which comport the programming cable is attached to
-      webSocket.send("listSerialPorts", function(respObj){
+      /*webSocket.send("listSerialPorts", function(respObj){
         addOnLoad(function(){
           if (picaxe.comportSelectId && document.getElementById(picaxe.comportSelectId)) {
             var selPort = document.getElementById(picaxe.comportSelectId); //.value = ports.default;
@@ -144,7 +153,7 @@ var picaxe = {};
   
        // picaxe.defaultComport = ports.default;
        // picaxe.portSettings.port = ports.default;
-      });
+      });*/
 
     },
 
